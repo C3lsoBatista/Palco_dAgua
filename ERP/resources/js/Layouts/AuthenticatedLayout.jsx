@@ -5,6 +5,16 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
+/**
+ * Layout principal para utilizadores autenticados.
+ * Fornece a estrutura base da interface, incluindo a barra de navegação superior,
+ * o menu de opções do utilizador (dropdown) e a navegação responsiva para dispositivos móveis.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {React.ReactNode} [props.header] - Conteúdo opcional para o cabeçalho da página.
+ * @param {React.ReactNode} props.children - O conteúdo principal a ser renderizado dentro do layout.
+ * @returns {JSX.Element} Estrutura de layout para sessões autenticadas.
+ */
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
 
@@ -64,14 +74,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                         <Dropdown.Link
                                             href={route('profile.edit')}
                                         >
-                                            Profile
+                                            Perfil
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route('logout')}
                                             method="post"
                                             as="button"
                                         >
-                                            Log Out
+                                            Terminar Sessão
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -148,14 +158,14 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('profile.edit')}>
-                                Profile
+                                Perfil
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
                                 href={route('logout')}
                                 as="button"
                             >
-                                Log Out
+                                Terminar Sessão
                             </ResponsiveNavLink>
                         </div>
                     </div>

@@ -7,6 +7,15 @@ import TextInput from '@/Components/TextInput';
 import { useForm } from '@inertiajs/react';
 import { useRef, useState } from 'react';
 
+/**
+ * Componente responsável pelo processo de eliminação da conta do utilizador.
+ * Implementa um fluxo de confirmação em duas etapas utilizando um modal
+ * para prevenir a eliminação acidental da conta.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {string} [props.className=''] - Classes CSS adicionais para a secção.
+ * @returns {JSX.Element} Secção de eliminação de conta.
+ */
 export default function DeleteUserForm({ className = '' }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef();
@@ -23,10 +32,19 @@ export default function DeleteUserForm({ className = '' }) {
         password: '',
     });
 
+    /**
+     * Inicia o processo de eliminação abrindo o modal de confirmação.
+     */
     const confirmUserDeletion = () => {
         setConfirmingUserDeletion(true);
     };
 
+    /**
+     * Processa o pedido de eliminação da conta após a confirmação.
+     * Foca automaticamente no campo da palavra-passe em caso de erro.
+     *
+     * @param {React.FormEvent<HTMLFormElement>} e - O evento de submissão do formulário.
+     */
     const deleteUser = (e) => {
         e.preventDefault();
 
@@ -38,6 +56,9 @@ export default function DeleteUserForm({ className = '' }) {
         });
     };
 
+    /**
+     * Fecha o modal de confirmação, limpa os erros e repõe o estado do formulário.
+     */
     const closeModal = () => {
         setConfirmingUserDeletion(false);
 
@@ -49,38 +70,37 @@ export default function DeleteUserForm({ className = '' }) {
         <section className={`space-y-6 ${className}`}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
-                    Delete Account
+                    Eliminar Conta
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Once your account is deleted, all of its resources and data
-                    will be permanently deleted. Before deleting your account,
-                    please download any data or information that you wish to
-                    retain.
+                    Assim que a tua conta for eliminada, todos os seus recursos e dados
+                    serão permanentemente apagados. Antes de eliminares a conta,
+                    por favor descarrega quaisquer dados ou informações que desejes manter.
                 </p>
             </header>
 
             <DangerButton onClick={confirmUserDeletion}>
-                Delete Account
+                Eliminar Conta
             </DangerButton>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
                     <h2 className="text-lg font-medium text-gray-900">
-                        Are you sure you want to delete your account?
+                        Tens a certeza de que pretendes eliminar a tua conta?
                     </h2>
 
                     <p className="mt-1 text-sm text-gray-600">
-                        Once your account is deleted, all of its resources and
-                        data will be permanently deleted. Please enter your
-                        password to confirm you would like to permanently delete
-                        your account.
+                        Assim que a tua conta for eliminada, todos os seus recursos e
+                        dados serão permanentemente apagados. Por favor, introduz a tua
+                        palavra-passe para confirmares que pretendes eliminar a tua
+                        conta definitivamente.
                     </p>
 
                     <div className="mt-6">
                         <InputLabel
                             htmlFor="password"
-                            value="Password"
+                            value="Palavra-passe"
                             className="sr-only"
                         />
 
@@ -95,7 +115,7 @@ export default function DeleteUserForm({ className = '' }) {
                             }
                             className="mt-1 block w-3/4"
                             isFocused
-                            placeholder="Password"
+                            placeholder="Palavra-passe"
                         />
 
                         <InputError
@@ -106,11 +126,11 @@ export default function DeleteUserForm({ className = '' }) {
 
                     <div className="mt-6 flex justify-end">
                         <SecondaryButton onClick={closeModal}>
-                            Cancel
+                            Cancelar
                         </SecondaryButton>
 
                         <DangerButton className="ms-3" disabled={processing}>
-                            Delete Account
+                            Eliminar Conta
                         </DangerButton>
                     </div>
                 </form>

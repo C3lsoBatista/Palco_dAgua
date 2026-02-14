@@ -5,6 +5,16 @@ import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
 
+/**
+ * Componente responsável por redefinir a palavra-passe do utilizador.
+ * Esta vista é acedida através do link enviado para o email do utilizador
+ * e requer o token de segurança gerado pelo servidor para validar a alteração.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {string} props.token - O token de recuperação gerado pelo servidor.
+ * @param {string} props.email - O endereço de email associado ao pedido de recuperação.
+ * @returns {JSX.Element} A vista de redefinição de palavra-passe.
+ */
 export default function ResetPassword({ token, email }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         token: token,
@@ -13,6 +23,13 @@ export default function ResetPassword({ token, email }) {
         password_confirmation: '',
     });
 
+    /**
+     * Processa a submissão do formulário.
+     * Envia as novas credenciais e o token de validação para o servidor.
+     * Em caso de conclusão (sucesso ou erro), efetua o reset aos campos das palavras-passe.
+     *
+     * @param {React.FormEvent<HTMLFormElement>} e - O evento de submissão do formulário.
+     */
     const submit = (e) => {
         e.preventDefault();
 
@@ -23,7 +40,7 @@ export default function ResetPassword({ token, email }) {
 
     return (
         <GuestLayout>
-            <Head title="Reset Password" />
+            <Head title="Redefinir Palavra-passe" />
 
             <form onSubmit={submit}>
                 <div>
@@ -43,7 +60,7 @@ export default function ResetPassword({ token, email }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Nova Palavra-passe" />
 
                     <TextInput
                         id="password"
@@ -62,7 +79,7 @@ export default function ResetPassword({ token, email }) {
                 <div className="mt-4">
                     <InputLabel
                         htmlFor="password_confirmation"
-                        value="Confirm Password"
+                        value="Confirmar Palavra-passe"
                     />
 
                     <TextInput
@@ -85,7 +102,7 @@ export default function ResetPassword({ token, email }) {
 
                 <div className="mt-4 flex items-center justify-end">
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Reset Password
+                        Redefinir Palavra-passe
                     </PrimaryButton>
                 </div>
             </form>

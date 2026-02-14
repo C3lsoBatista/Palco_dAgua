@@ -5,6 +5,12 @@ import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 
+/**
+ * Componente responsável pela página de registo de novos utilizadores.
+ * Apresenta um formulário para a criação de uma conta com nome, email e palavra-passe.
+ *
+ * @returns {JSX.Element} A vista de registo.
+ */
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
@@ -13,6 +19,13 @@ export default function Register() {
         password_confirmation: '',
     });
 
+    /**
+     * Processa a submissão do formulário de registo.
+     * Envia os dados do novo utilizador para o servidor e, após a conclusão do pedido
+     * (com sucesso ou erro de validação), limpa os campos da palavra-passe por questões de segurança.
+     *
+     * @param {React.FormEvent<HTMLFormElement>} e - O evento de submissão do formulário.
+     */
     const submit = (e) => {
         e.preventDefault();
 
@@ -23,11 +36,11 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Register" />
+            <Head title="Registo" />
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="name" value="Nome" />
 
                     <TextInput
                         id="name"
@@ -61,7 +74,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Palavra-passe" />
 
                     <TextInput
                         id="password"
@@ -80,7 +93,7 @@ export default function Register() {
                 <div className="mt-4">
                     <InputLabel
                         htmlFor="password_confirmation"
-                        value="Confirm Password"
+                        value="Confirmar Palavra-passe"
                     />
 
                     <TextInput
@@ -107,11 +120,11 @@ export default function Register() {
                         href={route('login')}
                         className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                        Already registered?
+                        Já tens conta?
                     </Link>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
+                        Registar
                     </PrimaryButton>
                 </div>
             </form>

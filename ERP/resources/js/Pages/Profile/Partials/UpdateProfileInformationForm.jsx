@@ -5,6 +5,16 @@ import TextInput from '@/Components/TextInput';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 
+/**
+ * Componente responsável pela atualização das informações de perfil do utilizador.
+ * Permite alterar o nome e o email, gerindo também o estado de verificação do email.
+ *
+ * @param {Object} props - As propriedades do componente.
+ * @param {boolean} props.mustVerifyEmail - Indica se o sistema exige a verificação do email.
+ * @param {string} [props.status] - Estado da sessão (ex: 'verification-link-sent').
+ * @param {string} [props.className=''] - Classes CSS adicionais para estilização.
+ * @returns {JSX.Element} Formulário de atualização de perfil.
+ */
 export default function UpdateProfileInformation({
     mustVerifyEmail,
     status,
@@ -18,6 +28,11 @@ export default function UpdateProfileInformation({
             email: user.email,
         });
 
+    /**
+     * Submete o formulário para atualizar as informações do utilizador.
+     *
+     * @param {React.FormEvent<HTMLFormElement>} e - O evento de submissão do formulário.
+     */
     const submit = (e) => {
         e.preventDefault();
 
@@ -28,17 +43,17 @@ export default function UpdateProfileInformation({
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
-                    Profile Information
+                    Informações do Perfil
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Update your account's profile information and email address.
+                    Atualiza as informações do perfil e o endereço de email da tua conta.
                 </p>
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="name" value="Nome" />
 
                     <TextInput
                         id="name"
@@ -72,28 +87,27 @@ export default function UpdateProfileInformation({
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
                         <p className="mt-2 text-sm text-gray-800">
-                            Your email address is unverified.
+                            O teu endereço de email não está verificado.
                             <Link
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
                                 className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
-                                Click here to re-send the verification email.
+                                Clica aqui para reenviar o email de verificação.
                             </Link>
                         </p>
 
                         {status === 'verification-link-sent' && (
                             <div className="mt-2 text-sm font-medium text-green-600">
-                                A new verification link has been sent to your
-                                email address.
+                                Um novo link de verificação foi enviado para o teu endereço de email.
                             </div>
                         )}
                     </div>
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <PrimaryButton disabled={processing}>Guardar</PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
@@ -103,7 +117,7 @@ export default function UpdateProfileInformation({
                         leaveTo="opacity-0"
                     >
                         <p className="text-sm text-gray-600">
-                            Saved.
+                            Guardado.
                         </p>
                     </Transition>
                 </div>
