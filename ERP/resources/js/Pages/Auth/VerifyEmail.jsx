@@ -1,67 +1,48 @@
-import PrimaryButton from '@/Components/PrimaryButton';
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 /**
- * Componente responsável pela página de aviso de verificação de email.
- * Refatorado com suporte a Dark Mode e identidade visual violet.
- *
- * @param {Object} props - As propriedades do componente.
- * @param {string} [props.status] - Estado da sessão.
+ * Componente de "Parede de Aprovação".
+ * Exibido quando um utilizador autenticado tenta aceder ao ERP sem ter o email_verified_at preenchido.
  */
-export default function VerifyEmail({ status }) {
-    const { post, processing } = useForm({});
-
-    const submit = (e) => {
-        e.preventDefault();
-        post(route('verification.send'));
-    };
-
+export default function VerifyEmail() {
     return (
         <GuestLayout>
-            <Head title="Verificação de Email" />
+            <Head title="Aguardando Aprovação" />
 
-            {/* Cabeçalho de Contexto com suporte a Dark Mode */}
+            {/* Cabeçalho de Contexto - Focado em Aprovação Humana */}
             <div className="mb-8 text-center">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                    Verifica o teu Email
+                    Conta Pendente de Aprovação
                 </h2>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    Obrigado por te registares! Antes de começares, por favor verifica o 
-                    teu endereço de email clicando no link que te enviámos. Se não 
-                    recebeste o email, clica no botão abaixo para reenviar um novo.
+                <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Obrigado por te registares no ERP Palco d'Água! 
+                    Para garantir a segurança dos dados, o teu acesso precisa de ser validado manualmente por um administrador.
                 </p>
+                <div className="mt-6 p-4 rounded-lg bg-violet-50 dark:bg-violet-900/20 border border-violet-100 dark:border-violet-800">
+                    <p className="text-xs font-medium text-violet-700 dark:text-violet-300">
+                        O administrador já foi notificado do teu registo. 
+                        Receberás um email assim que o teu acesso for autorizado.
+                    </p>
+                </div>
             </div>
 
-            {/* Feedback de Estado (Sucesso) com suporte Dark Mode */}
-            {status === 'verification-link-sent' && (
-                <div className="mb-6 rounded-md bg-green-50 dark:bg-green-900/30 p-4 text-sm font-medium text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800 text-center">
-                    Um novo link de verificação foi enviado para o endereço de email fornecido durante o registo.
-                </div>
-            )}
-
-            {/* Formulário contendo a Ação Principal (Violet) */}
-            <form onSubmit={submit} className="space-y-6">
-                <div>
-                    <PrimaryButton 
-                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-all duration-200" 
-                        disabled={processing}
-                    >
-                        {processing ? 'A enviar...' : 'Reenviar Email de Verificação'}
-                    </PrimaryButton>
-                </div>
-            </form>
-
-            {/* Ação Secundária (Terminar Sessão) com suporte Dark Mode */}
-            <div className="mt-8 text-center">
+            {/* Ações de Saída e Suporte */}
+            <div className="space-y-4">
                 <Link
                     href={route('logout')}
                     method="post"
                     as="button"
-                    className="text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline transition-all duration-200 focus:outline-none"
+                    className="w-full inline-flex justify-center items-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-all duration-200"
                 >
-                    Terminar Sessão
+                    Voltar para o Login
                 </Link>
+
+                <div className="text-center">
+                    <p className="text-xs text-gray-500 dark:text-gray-500">
+                        Precisas de ajuda urgente? Contacta o suporte técnico.
+                    </p>
+                </div>
             </div>
         </GuestLayout>
     );

@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
@@ -16,7 +15,7 @@ use Inertia\Response;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Exibe a vista de registo.
      */
     public function create(): Response
     {
@@ -24,9 +23,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Manipula um pedido de registo de entrada.
      */
     public function store(Request $request): RedirectResponse
     {
@@ -42,10 +39,11 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Dispara o evento de registo (que pode enviar o mail para o Admin)
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        // SENIOR PRACTICE: Não autenticamos o utilizador imediatamente.
+        // Redirecionamos para o login com uma mensagem informativa.
+        return redirect()->route('login')->with('status', 'Conta criada com sucesso! Aguarde a validação do administrador para poder aceder.');
     }
 }
