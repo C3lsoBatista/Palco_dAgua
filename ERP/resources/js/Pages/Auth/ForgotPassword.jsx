@@ -6,28 +6,16 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 /**
- * Componente para o pedido de redefinição de palavra-passe.
- * Permite ao utilizador solicitar um link de recuperação, que será enviado para o seu email,
- * caso se tenha esquecido da palavra-passe atual.
- *
- * @param {Object} props - As propriedades do componente.
- * @param {string} [props.status] - Mensagem de estado da sessão (ex: indicação de que o link foi enviado com sucesso).
- * @returns {JSX.Element} A vista de recuperação de palavra-passe.
+ * Componente para o pedido de redefinição de palavra-passe com suporte a Dark Mode.
+ * Permite ao utilizador solicitar um link de recuperação via email.
  */
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
         email: '',
     });
 
-    /**
-     * Processa a submissão do formulário.
-     * Envia um pedido POST para o endpoint responsável por gerar e enviar o email de recuperação.
-     *
-     * @param {React.FormEvent<HTMLFormElement>} e - O evento de submissão do formulário.
-     */
     const submit = (e) => {
         e.preventDefault();
-
         post(route('password.email'));
     };
 
@@ -35,28 +23,26 @@ export default function ForgotPassword({ status }) {
         <GuestLayout>
             <Head title="Recuperar Palavra-passe" />
 
-            {/* Cabeçalho de Contexto */}
+            {/* Cabeçalho com suporte a Dark Mode */}
             <div className="mb-8 text-center">
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                     Recuperar Palavra-passe
                 </h2>
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                     Esqueceste-te da palavra-passe? Não há problema. Introduz o teu 
                     endereço de email e enviar-te-emos um link para definires uma nova.
                 </p>
             </div>
 
-            {/* Feedback de Estado (Sucesso) */}
+            {/* Feedback de Estado (Sucesso) com cores adaptadas para Dark Mode */}
             {status && (
-                <div className="mb-6 rounded-md bg-green-50 p-4 text-sm font-medium text-green-700 border border-green-200">
+                <div className="mb-6 rounded-md bg-green-50 dark:bg-green-900/30 p-4 text-sm font-medium text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800">
                     {status}
                 </div>
             )}
 
-            {/* Formulário com espaçamento consistente */}
             <form onSubmit={submit} className="space-y-6">
                 <div>
-                    {/* InputLabel adicionado para melhor acessibilidade (WAI-ARIA) */}
                     <InputLabel htmlFor="email" value="Email" />
                     
                     <TextInput
@@ -64,31 +50,33 @@ export default function ForgotPassword({ status }) {
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full transition-shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        /* Classes de focus alteradas para violet conforme a identidade visual */
+                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
+                        required
                     />
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                {/* Botão de Ação Principal (Largura Total) */}
                 <div>
                     <PrimaryButton 
-                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200" 
+                        /* Botão principal com a cor violeta da marca */
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-all duration-200" 
                         disabled={processing}
                     >
-                        Enviar Link de Redefinição
+                        {processing ? 'A enviar...' : 'Enviar Link de Redefinição'}
                     </PrimaryButton>
                 </div>
             </form>
 
-            {/* Ação Secundária: Rota de escape recomendada para UX */}
-            <p className="mt-8 text-center text-sm text-gray-600">
+            {/* Ação Secundária (Voltar ao Login) com suporte a Dark Mode e cor Violet */}
+            <p className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
                 Lembraste-te da palavra-passe?{' '}
                 <Link
                     href={route('login')}
-                    className="font-semibold text-indigo-600 hover:text-indigo-500 hover:underline transition-all duration-200"
+                    className="font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-500 hover:underline transition-all duration-200"
                 >
                     Voltar ao Login
                 </Link>

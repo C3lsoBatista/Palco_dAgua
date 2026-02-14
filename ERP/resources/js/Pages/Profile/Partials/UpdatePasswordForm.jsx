@@ -7,13 +7,8 @@ import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 
 /**
- * Componente responsável pela atualização da palavra-passe do utilizador.
- * Fornece um formulário para inserir a palavra-passe atual, a nova e a respetiva confirmação,
- * gerindo de forma automática os erros de validação e o foco nos campos em caso de falha.
- *
- * @param {Object} props - As propriedades do componente.
- * @param {string} [props.className=''] - Classes CSS adicionais para estilização da secção.
- * @returns {JSX.Element} Formulário de atualização de palavra-passe.
+ * Formulário de Atualização de Palavra-passe.
+ * Refatorado com suporte a Dark Mode e identidade visual violet.
  */
 export default function UpdatePasswordForm({ className = '' }) {
     const passwordInput = useRef();
@@ -33,13 +28,6 @@ export default function UpdatePasswordForm({ className = '' }) {
         password_confirmation: '',
     });
 
-    /**
-     * Processa a submissão do formulário.
-     * Faz um pedido PUT para atualizar a palavra-passe. Em caso de sucesso, limpa os campos.
-     * Em caso de erro, efetua o reset dos campos com falha e redireciona o foco para melhorar a acessibilidade.
-     *
-     * @param {React.FormEvent<HTMLFormElement>} e - O evento de submissão.
-     */
     const updatePassword = (e) => {
         e.preventDefault();
 
@@ -63,11 +51,11 @@ export default function UpdatePasswordForm({ className = '' }) {
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
+                <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                     Atualizar Palavra-passe
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     Garante que a tua conta utiliza uma palavra-passe longa e aleatória para se manter segura.
                 </p>
             </header>
@@ -137,7 +125,12 @@ export default function UpdatePasswordForm({ className = '' }) {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Guardar</PrimaryButton>
+                    <PrimaryButton 
+                        className="bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-colors"
+                        disabled={processing}
+                    >
+                        Guardar Alterações
+                    </PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
@@ -146,8 +139,8 @@ export default function UpdatePasswordForm({ className = '' }) {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">
-                            Guardado.
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                            Palavra-passe atualizada com sucesso.
                         </p>
                     </Transition>
                 </div>

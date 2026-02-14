@@ -7,13 +7,11 @@ import { Head, useForm } from '@inertiajs/react';
 
 /**
  * Componente responsável por redefinir a palavra-passe do utilizador.
- * Esta vista é acedida através do link enviado para o email do utilizador
- * e requer o token de segurança gerado pelo servidor para validar a alteração.
+ * Implementado com suporte total a Dark Mode e identidade visual violet.
  *
  * @param {Object} props - As propriedades do componente.
  * @param {string} props.token - O token de recuperação gerado pelo servidor.
  * @param {string} props.email - O endereço de email associado ao pedido de recuperação.
- * @returns {JSX.Element} A vista de redefinição de palavra-passe.
  */
 export default function ResetPassword({ token, email }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -26,9 +24,6 @@ export default function ResetPassword({ token, email }) {
     /**
      * Processa a submissão do formulário.
      * Envia as novas credenciais e o token de validação para o servidor.
-     * Em caso de conclusão (sucesso ou erro), efetua o reset aos campos das palavras-passe.
-     *
-     * @param {React.FormEvent<HTMLFormElement>} e - O evento de submissão do formulário.
      */
     const submit = (e) => {
         e.preventDefault();
@@ -42,18 +37,19 @@ export default function ResetPassword({ token, email }) {
         <GuestLayout>
             <Head title="Redefinir Palavra-passe" />
 
-            {/* Cabeçalho de Contexto */}
+            {/* Cabeçalho de Contexto com suporte a Dark Mode */}
             <div className="mb-8 text-center">
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                     Nova Palavra-passe
                 </h2>
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                     Quase lá! Escolhe uma nova palavra-passe forte para recuperares o acesso à tua conta.
                 </p>
             </div>
 
-            {/* Formulário com gestão automática de espaçamento */}
+            {/* Formulário com espaçamento vertical consistente */}
             <form onSubmit={submit} className="space-y-6">
+                {/* Campo de Email (Read-only) */}
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
 
@@ -62,15 +58,17 @@ export default function ResetPassword({ token, email }) {
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full transition-shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-50 text-gray-500"
+                        /* Classes de focus alteradas para violet e suporte a dark mode para campo read-only */
+                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm bg-gray-50 dark:bg-slate-800/50 text-gray-500 dark:text-slate-500 border-gray-200 dark:border-slate-700"
                         autoComplete="username"
-                        readOnly // Geralmente o email vem do link e não deve ser alterado aqui
+                        readOnly 
                         onChange={(e) => setData('email', e.target.value)}
                     />
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
+                {/* Nova Palavra-passe */}
                 <div>
                     <InputLabel htmlFor="password" value="Nova Palavra-passe" />
 
@@ -79,7 +77,7 @@ export default function ResetPassword({ token, email }) {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full transition-shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
                         autoComplete="new-password"
                         isFocused={true}
                         onChange={(e) => setData('password', e.target.value)}
@@ -88,6 +86,7 @@ export default function ResetPassword({ token, email }) {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
+                {/* Confirmação de Palavra-passe */}
                 <div>
                     <InputLabel
                         htmlFor="password_confirmation"
@@ -99,7 +98,7 @@ export default function ResetPassword({ token, email }) {
                         id="password_confirmation"
                         name="password_confirmation"
                         value={data.password_confirmation}
-                        className="mt-1 block w-full transition-shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
                         autoComplete="new-password"
                         onChange={(e) =>
                             setData('password_confirmation', e.target.value)
@@ -112,13 +111,13 @@ export default function ResetPassword({ token, email }) {
                     />
                 </div>
 
-                {/* Botão de Ação Principal (Largura Total) */}
+                {/* Botão de Ação Principal (Violet) */}
                 <div>
                     <PrimaryButton 
-                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200" 
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-all duration-200" 
                         disabled={processing}
                     >
-                        Redefinir Palavra-passe
+                        {processing ? 'A processar...' : 'Redefinir Palavra-passe'}
                     </PrimaryButton>
                 </div>
             </form>

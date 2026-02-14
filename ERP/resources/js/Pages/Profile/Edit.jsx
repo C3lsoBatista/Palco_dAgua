@@ -5,20 +5,14 @@ import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 
 /**
- * Componente de visualização e edição do perfil do utilizador.
- * Utiliza o layout autenticado e engloba os formulários de atualização
- * de informações, alteração de palavra-passe e eliminação de conta.
- *
- * @param {Object} props - As propriedades do componente.
- * @param {boolean} props.mustVerifyEmail - Indica se o utilizador necessita de verificar o email.
- * @param {string} props.status - O estado atual da sessão (ex: mensagem de sucesso após guardar).
- * @returns {JSX.Element} A interface de edição de perfil.
+ * Vista de Edição de Perfil.
+ * Organiza os sub-formulários em "cards" que suportam o tema escuro do ERP.
  */
 export default function Edit({ mustVerifyEmail, status }) {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-100 transition-colors">
                     Perfil
                 </h2>
             }
@@ -27,7 +21,9 @@ export default function Edit({ mustVerifyEmail, status }) {
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8">
+                    
+                    {/* Secção: Informações de Perfil */}
+                    <div className="bg-white dark:bg-slate-800 p-4 shadow sm:rounded-lg sm:p-8 transition-colors duration-300">
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}
@@ -35,13 +31,16 @@ export default function Edit({ mustVerifyEmail, status }) {
                         />
                     </div>
 
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8">
+                    {/* Secção: Alterar Palavra-passe */}
+                    <div className="bg-white dark:bg-slate-800 p-4 shadow sm:rounded-lg sm:p-8 transition-colors duration-300">
                         <UpdatePasswordForm className="max-w-xl" />
                     </div>
 
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8">
+                    {/* Secção: Eliminar Conta */}
+                    <div className="bg-white dark:bg-slate-800 p-4 shadow sm:rounded-lg sm:p-8 transition-colors duration-300">
                         <DeleteUserForm className="max-w-xl" />
                     </div>
+
                 </div>
             </div>
         </AuthenticatedLayout>

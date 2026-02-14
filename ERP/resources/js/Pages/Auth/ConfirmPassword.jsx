@@ -7,10 +7,8 @@ import { Head, useForm } from '@inertiajs/react';
 
 /**
  * Componente de confirmação de palavra-passe.
- * Utilizado para proteger áreas sensíveis da aplicação, exigindo que o utilizador
- * reintroduza a sua palavra-passe para confirmar a sua identidade antes de prosseguir.
- *
- * @returns {JSX.Element} A vista de confirmação de palavra-passe.
+ * Refatorado com suporte a Dark Mode e identidade visual violet.
+ * Utilizado para validar a identidade do utilizador antes de aceder a áreas sensíveis.
  */
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -19,10 +17,7 @@ export default function ConfirmPassword() {
 
     /**
      * Processa a submissão do formulário.
-     * Envia o pedido para confirmar a palavra-passe e, independentemente de
-     * o pedido falhar ou ter sucesso, limpa o campo de texto por questões de segurança.
-     *
-     * @param {React.FormEvent<HTMLFormElement>} e - O evento de submissão do formulário.
+     * Garante a limpeza do campo após a execução por motivos de segurança.
      */
     const submit = (e) => {
         e.preventDefault();
@@ -36,12 +31,12 @@ export default function ConfirmPassword() {
         <GuestLayout>
             <Head title="Confirmar Palavra-passe" />
 
-            {/* Cabeçalho de Contexto */}
+            {/* Cabeçalho de Contexto com suporte a Dark Mode */}
             <div className="mb-8 text-center">
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                     Área Segura
                 </h2>
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                     Por favor, confirma a tua palavra-passe para prosseguires com esta ação.
                 </p>
             </div>
@@ -56,21 +51,23 @@ export default function ConfirmPassword() {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full transition-shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        /* Alterado de indigo para violet e garantido o suporte dark herdado */
+                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
                         isFocused={true}
                         onChange={(e) => setData('password', e.target.value)}
+                        required
                     />
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                {/* Botão de Ação Principal (Largura Total) */}
+                {/* Botão de Ação Principal (Violet) */}
                 <div>
                     <PrimaryButton 
-                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200" 
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-all duration-200" 
                         disabled={processing}
                     >
-                        Confirmar Palavra-passe
+                        {processing ? 'A confirmar...' : 'Confirmar Palavra-passe'}
                     </PrimaryButton>
                 </div>
             </form>
