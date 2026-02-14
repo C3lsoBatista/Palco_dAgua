@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -21,5 +22,11 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        // Ensina o Tailwind a ler a classe "sidebar-expanded" no Body
+        plugin(({ addVariant, e }) => {
+            addVariant('sidebar-expanded', ':merge(.sidebar-expanded) &');
+        }),
+    ],
 };
