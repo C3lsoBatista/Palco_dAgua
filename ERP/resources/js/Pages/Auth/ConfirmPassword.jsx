@@ -36,13 +36,19 @@ export default function ConfirmPassword() {
         <GuestLayout>
             <Head title="Confirmar Palavra-passe" />
 
-            <div className="mb-4 text-sm text-gray-600">
-                Esta é uma área segura da aplicação. Por favor, confirma a tua
-                palavra-passe antes de continuares.
+            {/* Cabeçalho de Contexto */}
+            <div className="mb-8 text-center">
+                <h2 className="text-2xl font-bold text-gray-900">
+                    Área Segura
+                </h2>
+                <p className="mt-2 text-sm text-gray-600">
+                    Por favor, confirma a tua palavra-passe para prosseguires com esta ação.
+                </p>
             </div>
 
-            <form onSubmit={submit}>
-                <div className="mt-4">
+            {/* Formulário com espaçamento consistente */}
+            <form onSubmit={submit} className="space-y-6">
+                <div>
                     <InputLabel htmlFor="password" value="Palavra-passe" />
 
                     <TextInput
@@ -50,7 +56,7 @@ export default function ConfirmPassword() {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full transition-shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         isFocused={true}
                         onChange={(e) => setData('password', e.target.value)}
                     />
@@ -58,9 +64,13 @@ export default function ConfirmPassword() {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Confirmar
+                {/* Botão de Ação Principal (Largura Total) */}
+                <div>
+                    <PrimaryButton 
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200" 
+                        disabled={processing}
+                    >
+                        Confirmar Palavra-passe
                     </PrimaryButton>
                 </div>
             </form>

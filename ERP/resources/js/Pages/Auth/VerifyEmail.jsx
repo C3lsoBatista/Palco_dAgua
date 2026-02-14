@@ -30,35 +30,48 @@ export default function VerifyEmail({ status }) {
         <GuestLayout>
             <Head title="Verificação de Email" />
 
-            <div className="mb-4 text-sm text-gray-600">
-                Obrigado por te registares! Antes de começares, poderias verificar o
-                teu endereço de email clicando no link que acabámos de te enviar? Se
-                não recebeste o email, teremos todo o gosto em enviar-te outro.
+            {/* Cabeçalho de Contexto */}
+            <div className="mb-8 text-center">
+                <h2 className="text-2xl font-bold text-gray-900">
+                    Verifica o teu Email
+                </h2>
+                <p className="mt-2 text-sm text-gray-600">
+                    Obrigado por te registares! Antes de começares, por favor verifica o 
+                    teu endereço de email clicando no link que te enviámos. Se não 
+                    recebeste o email, clica no botão abaixo para reenviar.
+                </p>
             </div>
 
+            {/* Feedback de Estado (Sucesso) */}
             {status === 'verification-link-sent' && (
-                <div className="mb-4 text-sm font-medium text-green-600">
-                    Um novo link de verificação foi enviado para o endereço de email
-                    que forneceste durante o registo.
+                <div className="mb-6 rounded-md bg-green-50 p-4 text-sm font-medium text-green-700 border border-green-200 text-center">
+                    Um novo link de verificação foi enviado para o endereço de email fornecido.
                 </div>
             )}
 
-            <form onSubmit={submit}>
-                <div className="mt-4 flex items-center justify-between">
-                    <PrimaryButton disabled={processing}>
+            {/* Formulário contendo a Ação Principal */}
+            <form onSubmit={submit} className="space-y-6">
+                <div>
+                    <PrimaryButton 
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200" 
+                        disabled={processing}
+                    >
                         Reenviar Email de Verificação
                     </PrimaryButton>
-
-                    <Link
-                        href={route('logout')}
-                        method="post"
-                        as="button"
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                        Terminar Sessão
-                    </Link>
                 </div>
             </form>
+
+            {/* Ação Secundária (Fuga) movida para uma zona segura */}
+            <div className="mt-8 text-center">
+                <Link
+                    href={route('logout')}
+                    method="post"
+                    as="button"
+                    className="text-sm font-semibold text-gray-500 hover:text-gray-900 hover:underline transition-all duration-200 focus:outline-none"
+                >
+                    Terminar Sessão
+                </Link>
+            </div>
         </GuestLayout>
     );
 }

@@ -42,76 +42,99 @@ export default function Login({ status, canResetPassword }) {
         <GuestLayout>
             <Head title="Iniciar Sessão" />
 
+            {/* Cabeçalho de Boas-vindas */}
+            <div className="mb-8 text-center">
+                <h2 className="text-2xl font-bold text-gray-900">
+                    Bem-vindo de volta
+                </h2>
+                <p className="mt-2 text-sm text-gray-600">
+                    Por favor, introduza as suas credenciais para aceder à sua conta.
+                </p>
+            </div>
+
+            {/* Feedback de Estado */}
             {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
+                <div className="mb-6 rounded-md bg-green-50 p-4 text-sm font-medium text-green-700 border border-green-200">
                     {status}
                 </div>
             )}
 
-            <form onSubmit={submit}>
+            {/* Formulário com espaçamento consistente */}
+            <form onSubmit={submit} className="space-y-6">
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
-
                     <TextInput
                         id="email"
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full transition-shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                     />
-
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
+                <div>
                     <InputLabel htmlFor="password" value="Palavra-passe" />
-
                     <TextInput
                         id="password"
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full transition-shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
-
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4 block">
-                    <label className="flex items-center">
+                {/* Opções de Login (Lembrar-me e Recuperar Password) */}
+                <div className="flex items-center justify-between">
+                    <label className="flex items-center cursor-pointer">
                         <Checkbox
                             name="remember"
                             checked={data.remember}
-                            onChange={(e) =>
-                                setData('remember', e.target.checked)
-                            }
+                            onChange={(e) => setData('remember', e.target.checked)}
+                            className="text-indigo-600 focus:ring-indigo-500 rounded border-gray-300"
                         />
-                        <span className="ms-2 text-sm text-gray-600">
+                        <span className="ms-2 text-sm text-gray-600 select-none">
                             Lembrar-me
                         </span>
                     </label>
-                </div>
 
-                <div className="mt-4 flex items-center justify-end">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="text-sm font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-200"
                         >
-                            Esqueceste-te da palavra-passe?
+                            Esqueceste a palavra-passe?
                         </Link>
                     )}
+                </div>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                {/* Botão de Ação Principal */}
+                <div>
+                    <PrimaryButton
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200"
+                        disabled={processing}
+                    >
                         Iniciar Sessão
                     </PrimaryButton>
                 </div>
             </form>
+
+            {/* Ação Secundária (Registo) isolada da área de submissão */}
+            <p className="mt-8 text-center text-sm text-gray-600">
+                Ainda não tens conta?{' '}
+                <Link
+                    href={route('register')}
+                    className="font-semibold text-indigo-600 hover:text-indigo-500 hover:underline transition-all duration-200"
+                >
+                    Registar agora
+                </Link>
+            </p>
         </GuestLayout>
     );
 }
