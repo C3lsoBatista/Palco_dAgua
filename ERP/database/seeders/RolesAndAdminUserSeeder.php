@@ -22,6 +22,7 @@ class RolesAndAdminUserSeeder extends Seeder
             [
                 'name'     => 'Administrador',
                 'password' => bcrypt('password123'), // muda depois
+                'email_verified_at' => now(),
             ]
         );
 
