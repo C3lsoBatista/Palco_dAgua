@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@inertiajs/react';
 import LineChart from '@/Components/Charts/LineChart01';
 import { chartAreaGradient } from '@/Components/Charts/ChartjsConfig';
 import EditMenu from '@/Components/DropdownEditMenu';
