@@ -11,9 +11,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Modelo de Utilizador do ERP Palco d'Água.
- * Implementa MustVerifyEmail para servir como gatilho de Aprovação do Admin.
+ * Modelo de Utilizador do ERP Palco d'Água.
  */
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles;

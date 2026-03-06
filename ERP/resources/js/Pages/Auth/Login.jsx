@@ -114,17 +114,6 @@ export default function Login({ status, canResetPassword }) {
                     </PrimaryButton>
                 </div>
             </form>
-
-            {/* Rodapé de Registo */}
-            <p className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
-                Ainda não tens conta?{' '}
-                <Link
-                    href={route('register')}
-                    className="font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-500 hover:underline transition-all duration-200"
-                >
-                    Registar agora
-                </Link>
-            </p>
         </GuestLayout>
     );
 }
