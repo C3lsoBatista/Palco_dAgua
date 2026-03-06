@@ -17,6 +17,31 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // --- Administration ---
+    Route::middleware(['permission:manage users|view audit'])->group(function () {
+        // e.g. Route::resource('users', UserController::class);
+    });
+
+    // --- Billing ---
+    Route::middleware(['permission:manage billing'])->group(function () {
+        // e.g. Route::resource('billing', BillingController::class);
+    });
+
+    // --- Clients ---
+    Route::middleware(['permission:view clients|manage clients'])->group(function () {
+        // e.g. Route::resource('clients', ClientController::class);
+    });
+
+    // --- Services ---
+    Route::middleware(['permission:view services|manage services|execute services'])->group(function () {
+        // e.g. Route::resource('services', ServiceController::class);
+    });
+
+    // --- Vehicles ---
+    Route::middleware(['permission:manage vehicles|register mileage'])->group(function () {
+        // e.g. Route::resource('vehicles', VehicleController::class);
+    });
 });
 
 require __DIR__.'/auth.php';
