@@ -1,6 +1,6 @@
 import React from 'react';
-import Tooltip from '../../components/Tooltip';
-import BarChart from '../../charts/BarChart02';
+import Tooltip from '@/Components/Tooltip';
+import BarChart from '@/Components/Charts/BarChart02';
 
 // Import utilities
 import { getCssVariable } from '@/utils/Utils';

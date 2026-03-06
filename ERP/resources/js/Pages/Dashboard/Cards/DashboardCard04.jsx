@@ -1,5 +1,5 @@
 import React from 'react';
-import BarChart from '../../charts/BarChart01';
+import BarChart from '@/Components/Charts/BarChart01';
 
 // Import utilities
 import { getCssVariable } from '@/utils/Utils';
