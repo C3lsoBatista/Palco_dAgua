@@ -44,7 +44,7 @@ export default function DropdownProfile({ align }) {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <div className="w-8 h-8 rounded-full bg-violet-500 flex items-center justify-center text-white font-bold text-sm">
+        <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm">
             {user ? user.name.charAt(0).toUpperCase() : 'A'}
         </div>
         <div className="flex items-center truncate">
@@ -78,7 +78,7 @@ export default function DropdownProfile({ align }) {
           <ul>
             <li>
               <Link
-                className="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3"
+                className="font-medium text-sm text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 flex items-center py-1 px-3"
                 href={route('profile.edit')}
                 onClick={() => setDropdownOpen(false)}
               >
@@ -88,7 +88,7 @@ export default function DropdownProfile({ align }) {
             <li>
               {/* CORREÇÃO: Cor alterada de vermelho para violeta, exatamente como no template */}
               <Link
-                className="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3"
+                className="font-medium text-sm text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 flex items-center py-1 px-3"
                 href={route('logout')}
                 method="post"
                 as="button"

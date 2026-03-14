@@ -21,8 +21,8 @@ export default function GuestLayout({ children }) {
                             {/* Logótipo centralizado com cor dinâmica */}
                             <div className="flex justify-center mb-6">
                                 <Link href="/">
-                                    {/* Alterado para text-violet-600 dark:text-violet-500 para alinhar com o ERP */}
-                                    <ApplicationLogo className="h-16 w-16 fill-current text-violet-600 dark:text-violet-500" />
+                                    {/* Alterado para text-blue-600 dark:text-blue-500 para alinhar com o ERP */}
+                                    <ApplicationLogo className="h-16 w-16 fill-current text-blue-600" />
                                 </Link>
                             </div>
 

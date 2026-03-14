@@ -9,7 +9,7 @@ import { useRef, useState } from 'react';
 
 /**
  * Secção de Eliminação de Conta.
- * Implementa suporte a Dark Mode e segue a paleta de cores slate/violet do sistema.
+ * Implementa suporte a Dark Mode e segue a paleta de cores slate/blue do sistema.
  */
 export default function DeleteUserForm({ className = '' }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);

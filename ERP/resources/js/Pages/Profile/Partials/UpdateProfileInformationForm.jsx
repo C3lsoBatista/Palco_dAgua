@@ -7,7 +7,7 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 
 /**
  * Componente para atualização das informações de perfil.
- * Implementa suporte a Dark Mode e utiliza a paleta violet da marca.
+ * Implementa suporte a Dark Mode e utiliza a paleta blue da marca.
  * * @param {Object} props - Propriedades do componente.
  * @param {boolean} props.mustVerifyEmail - Exigência de verificação de email.
  * @param {string} [props.status] - Estado da sessão.
@@ -90,7 +90,7 @@ export default function UpdateProfileInformation({
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
-                                className="ms-1 rounded-md text-sm text-gray-600 dark:text-gray-400 underline hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors"
+                                className="ms-1 rounded-md text-sm text-blue-600 dark:text-blue-500 underline hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-colors"
                             >
                                 Clica aqui para reenviar o email de verificação.
                             </Link>
@@ -106,7 +106,6 @@ export default function UpdateProfileInformation({
 
                 <div className="flex items-center gap-4">
                     <PrimaryButton 
-                        className="bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-colors"
                         disabled={processing}
                     >
                         Guardar Perfil

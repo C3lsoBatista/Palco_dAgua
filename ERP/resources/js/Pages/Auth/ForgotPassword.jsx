@@ -51,7 +51,7 @@ export default function ForgotPassword({ status }) {
                         name="email"
                         value={data.email}
                         /* Classes de focus alteradas para violet conforme a identidade visual */
-                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
+                        className="mt-1 block w-full transition-shadow focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                         required
@@ -63,7 +63,7 @@ export default function ForgotPassword({ status }) {
                 <div>
                     <PrimaryButton 
                         /* Botão principal com a cor violeta da marca */
-                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-all duration-200" 
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200" 
                         disabled={processing}
                     >
                         {processing ? 'A enviar...' : 'Enviar Link de Redefinição'}
@@ -76,7 +76,7 @@ export default function ForgotPassword({ status }) {
                 Lembraste-te da palavra-passe?{' '}
                 <Link
                     href={route('login')}
-                    className="font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-500 hover:underline transition-all duration-200"
+                    className="font-semibold text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 hover:underline transition-all duration-200"
                 >
                     Voltar ao Login
                 </Link>

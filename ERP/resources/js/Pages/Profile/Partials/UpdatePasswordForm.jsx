@@ -8,7 +8,7 @@ import { useRef } from 'react';
 
 /**
  * Formulário de Atualização de Palavra-passe.
- * Refatorado com suporte a Dark Mode e identidade visual violet.
+ * Refatorado com suporte a Dark Mode e identidade visual blue.
  */
 export default function UpdatePasswordForm({ className = '' }) {
     const passwordInput = useRef();
@@ -126,7 +126,6 @@ export default function UpdatePasswordForm({ className = '' }) {
 
                 <div className="flex items-center gap-4">
                     <PrimaryButton 
-                        className="bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-colors"
                         disabled={processing}
                     >
                         Guardar Alterações

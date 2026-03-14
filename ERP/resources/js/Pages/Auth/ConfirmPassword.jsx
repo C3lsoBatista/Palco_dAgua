@@ -52,7 +52,7 @@ export default function ConfirmPassword() {
                         name="password"
                         value={data.password}
                         /* Alterado de indigo para violet e garantido o suporte dark herdado */
-                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
+                        className="mt-1 block w-full transition-shadow focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                         isFocused={true}
                         onChange={(e) => setData('password', e.target.value)}
                         required
@@ -64,7 +64,7 @@ export default function ConfirmPassword() {
                 {/* Botão de Ação Principal (Violet) */}
                 <div>
                     <PrimaryButton 
-                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-all duration-200" 
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200" 
                         disabled={processing}
                     >
                         {processing ? 'A confirmar...' : 'Confirmar Palavra-passe'}

@@ -45,13 +45,13 @@ export default function FinanceDashboard() {
                 </div>
 
                 {/* Card: Clientes com dados por atualizar */}
-                <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-violet-500 shadow-sm transition-all hover:shadow-md">
+                <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border-l-4 border-blue-500 shadow-sm transition-all hover:shadow-md">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Dados por Atualizar</p>
                             <p className="text-3xl font-bold text-slate-800 dark:text-slate-100 mt-1">5</p>
                         </div>
-                        <div className="text-violet-500 bg-violet-50 dark:bg-violet-900/20 p-2 rounded-lg">👤</div>
+                        <div className="text-blue-500 bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg">👤</div>
                     </div>
                     <p className="text-[10px] text-slate-400 mt-4">Clientes sem NIF ou Morada fiscal</p>
                 </div>
@@ -73,7 +73,7 @@ export default function FinanceDashboard() {
                     </div>
 
                     {/* Botão Add Customer */}
-                    <button className="bg-slate-900 dark:bg-violet-600 hover:bg-slate-800 dark:hover:bg-violet-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition-all shadow-sm active:scale-95">
+                    <button className="bg-slate-900 dark:bg-blue-600 hover:bg-slate-800 dark:hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition-all shadow-sm active:scale-95">
                         Add Customer
                     </button>
                 </div>

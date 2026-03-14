@@ -19,8 +19,8 @@ export default function VerifyEmail() {
                     Obrigado por te registares no ERP Palco d'Água! 
                     Para garantir a segurança dos dados, o teu acesso precisa de ser validado manualmente por um administrador.
                 </p>
-                <div className="mt-6 p-4 rounded-lg bg-violet-50 dark:bg-violet-900/20 border border-violet-100 dark:border-violet-800">
-                    <p className="text-xs font-medium text-violet-700 dark:text-violet-300">
+                <div className="mt-6 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
+                    <p className="text-xs font-medium text-blue-700 dark:text-blue-300">
                         O administrador já foi notificado do teu registo. 
                         Receberás um email assim que o teu acesso for autorizado.
                     </p>
@@ -33,7 +33,7 @@ export default function VerifyEmail() {
                     href={route('logout')}
                     method="post"
                     as="button"
-                    className="w-full inline-flex justify-center items-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-all duration-200"
+                    className="w-full inline-flex justify-center items-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
                 >
                     Voltar para o Login
                 </Link>

@@ -59,7 +59,7 @@ export default function ResetPassword({ token, email }) {
                         name="email"
                         value={data.email}
                         /* Classes de focus alteradas para violet e suporte a dark mode para campo read-only */
-                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm bg-gray-50 dark:bg-slate-800/50 text-gray-500 dark:text-slate-500 border-gray-200 dark:border-slate-700"
+                        className="mt-1 block w-full transition-shadow focus:border-blue-500 focus:ring-blue-500 sm:text-sm bg-gray-50 dark:bg-slate-800/50 text-gray-500 dark:text-slate-500 border-gray-200 dark:border-slate-700"
                         autoComplete="username"
                         readOnly 
                         onChange={(e) => setData('email', e.target.value)}
@@ -77,7 +77,7 @@ export default function ResetPassword({ token, email }) {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
+                        className="mt-1 block w-full transition-shadow focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                         autoComplete="new-password"
                         isFocused={true}
                         onChange={(e) => setData('password', e.target.value)}
@@ -98,7 +98,7 @@ export default function ResetPassword({ token, email }) {
                         id="password_confirmation"
                         name="password_confirmation"
                         value={data.password_confirmation}
-                        className="mt-1 block w-full transition-shadow focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
+                        className="mt-1 block w-full transition-shadow focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                         autoComplete="new-password"
                         onChange={(e) =>
                             setData('password_confirmation', e.target.value)
@@ -114,7 +114,7 @@ export default function ResetPassword({ token, email }) {
                 {/* Botão de Ação Principal (Violet) */}
                 <div>
                     <PrimaryButton 
-                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md bg-violet-600 hover:bg-violet-700 active:bg-violet-800 transition-all duration-200" 
+                        className="w-full justify-center py-2.5 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200" 
                         disabled={processing}
                     >
                         {processing ? 'A processar...' : 'Redefinir Palavra-passe'}

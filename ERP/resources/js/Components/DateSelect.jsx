@@ -83,7 +83,7 @@ export default function DateSelect() {
               key={option.id}
               tabIndex="0"
               className={`flex items-center w-full hover:bg-gray-50 dark:hover:bg-gray-700/20 py-1 px-3 cursor-pointer ${
-                option.id === selected && 'text-violet-500'
+                option.id === selected && 'text-blue-500'
               }`}
               onClick={() => {
                 setSelected(option.id);
@@ -91,7 +91,7 @@ export default function DateSelect() {
               }}
             >
               <svg
-                className={`shrink-0 mr-2 fill-current text-violet-500 ${
+                className={`shrink-0 mr-2 fill-current text-blue-500 ${
                   option.id !== selected && 'invisible'
                 }`}
                 width="12"

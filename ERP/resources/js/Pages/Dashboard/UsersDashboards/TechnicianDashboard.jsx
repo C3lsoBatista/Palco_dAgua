@@ -23,7 +23,7 @@ export default function TechnicianDashboard() {
             janela_horaria: '11:00 - 13:00',
             tipo: 'Reparação Urgente',
             estado: 'Em curso',
-            cor_estado: 'bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400'
+            cor_estado: 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
         },
         {
             id: 3,
@@ -49,7 +49,7 @@ export default function TechnicianDashboard() {
                     </p>
                 </div>
                 <div className="text-right">
-                    <span className="text-2xl font-black text-violet-600 dark:text-violet-400">
+                    <span className="text-2xl font-black text-blue-600 dark:text-blue-400">
                         {servicosHoje.length}
                     </span>
                     <p className="text-[10px] font-bold text-slate-400 uppercase">Serviços</p>
@@ -61,7 +61,7 @@ export default function TechnicianDashboard() {
                 {servicosHoje.map((servico) => (
                     <div 
                         key={servico.id} 
-                        className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-5 transition-all active:scale-[0.98] hover:border-violet-400 dark:hover:border-violet-500"
+                        className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-5 transition-all active:scale-[0.98] hover:border-blue-400 dark:hover:border-blue-500"
                     >
                         <div className="flex justify-between items-start mb-4">
                             <div className="space-y-1">
@@ -78,7 +78,7 @@ export default function TechnicianDashboard() {
                                     <span className="line-clamp-1">{servico.morada}</span>
                                 </div>
                             </div>
-                            <button className="p-2 text-slate-400 dark:text-slate-500 hover:text-violet-500 transition-colors">
+                            <button className="p-2 text-slate-400 dark:text-slate-500 hover:text-blue-500 transition-colors">
                                 <svg className="w-5 h-5 fill-current" viewBox="0 0 16 16">
                                     <path d="M8 0a8 8 0 1 0 8 8A8.009 8.009 0 0 0 8 0Zm0 14a6 6 0 1 1 0-12 6 6 0 0 1 0 12Z"/><path d="M12.7 5.7a1 1 0 0 0-1.4 0L8 9.3 4.7 6a1 1 0 1 0-1.4 1.4l4 4a1 1 0 0 0 1.4 0l4-4a1 1 0 0 0 0-1.4Z"/>
                                 </svg>
@@ -87,7 +87,7 @@ export default function TechnicianDashboard() {
 
                         {/* Ações de Terreno */}
                         <div className="grid grid-cols-4 gap-2 mt-4">
-                            <button className="col-span-3 bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-violet-500/20 flex items-center justify-center gap-2">
+                            <button className="col-span-3 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">
                                 <span>{servico.estado === 'Em curso' ? 'Concluir Serviço' : 'Iniciar Serviço'}</span>
                                 <svg className="w-4 h-4 fill-current" viewBox="0 0 16 16"><path d="M11 8L5 12V4l6 4z"/></svg>
                             </button>
@@ -108,7 +108,7 @@ export default function TechnicianDashboard() {
             <div className="text-center pt-4">
                 <p className="text-xs text-slate-400 dark:text-slate-500">
                     Fim da agenda para hoje. Algum problema?<br/>
-                    <a href="tel:910000000" className="text-violet-500 font-bold underline">Contactar Suporte</a>
+                    <a href="tel:910000000" className="text-blue-500 font-bold underline">Contactar Suporte</a>
                 </p>
             </div>
         </div>
