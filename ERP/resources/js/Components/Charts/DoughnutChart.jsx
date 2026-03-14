@@ -4,27 +4,47 @@ import './ChartjsConfig';
 
 Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
 
-function DoughnutChart({ data, width, height }) {
+function DoughnutChart({ data, width, height, isPie = false }) {
   const canvas = useRef(null);
+  const chartRef = useRef(null);
 
   useEffect(() => {
     const ctx = canvas.current;
-    const chart = new Chart(ctx, {
+    if (chartRef.current) {
+      chartRef.current.destroy();
+    }
+
+    chartRef.current = new Chart(ctx, {
       type: 'doughnut',
       data: data,
       options: {
-        cutout: '80%',
-        layout: { padding: 24 },
-        plugins: { legend: { display: false } },
+        cutout: isPie ? '0%' : '80%',
+        layout: { padding: 4 },
+        plugins: { 
+          legend: { display: false },
+          tooltip: {
+            enabled: true,
+          }
+        },
         interaction: { intersect: false, mode: 'nearest' },
         maintainAspectRatio: false,
-        resizeDelay: 200,
+        responsive: true,
       },
     });
-    return () => chart.destroy();
+
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
+    };
   }, [data]);
 
-  return <canvas ref={canvas} width={width} height={height}></canvas>;
+  return (
+    <div className="flex flex-col justify-center align-center" style={{ width: width ? `${width}px` : 'auto', height: height ? `${height}px` : '100%' }}>
+      <canvas ref={canvas}></canvas>
+    </div>
+  );
 }
 
 export default DoughnutChart;
+

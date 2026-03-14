@@ -1,14 +1,15 @@
-export const formatValue = (value) => Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  maximumSignificantDigits: 3,
-  notation: 'compact',
-}).format(value);
+export const formatValue = (value) => {
+  if (value === null || value === undefined) return '';
+  const rounded = Math.round(value);
+  const formatted = rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return `${formatted} €`;
+};
 
-export const formatThousands = (value) => Intl.NumberFormat('en-US', {
-  maximumSignificantDigits: 3,
-  notation: 'compact',
-}).format(value);
+
+
+
+export const formatThousands = (value) => Intl.NumberFormat('pt-PT').format(value);
+
 
 export const getCssVariable = (variable) => {
   return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
