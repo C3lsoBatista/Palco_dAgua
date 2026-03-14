@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function () {
         Route::delete('/tipos-contacto/{tipos_contacto}', [\App\Http\Controllers\TipoContactoController::class, 'destroy'])->name('tipos-contacto.destroy');
         Route::patch('/tipos-contacto/{id}/restore', [\App\Http\Controllers\TipoContactoController::class, 'restore'])->name('tipos-contacto.restore');
     });
+
+    // --- Changelog ---
+    Route::get('/changelog', [\App\Http\Controllers\ChangelogController::class, 'index'])->name('changelog.index');
 });
 
 require __DIR__.'/auth.php';
