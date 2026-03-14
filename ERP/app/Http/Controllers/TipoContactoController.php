@@ -25,9 +25,9 @@ class TipoContactoController extends Controller
                 'Ativos'    => $q->where('ativo', true)->whereNull('deleted_at'),
                 'Inativo'   => $q->where('ativo', false)->whereNull('deleted_at'),
                 'Arquivado' => $q->onlyTrashed(),
-                default     => $q->whereNull('deleted_at'),
+                default     => $q, // Mostra todos (ativos, inativos e arquivados)
             };
-        }, fn($q) => $q->whereNull('deleted_at'));
+        }, fn($q) => $q); // Fallback: Mostra todos se nenhuma tab for enviada
 
         // Filtro de Data
         $query->when($request->input('dateRange'), function ($q, $range) {
@@ -43,11 +43,28 @@ class TipoContactoController extends Controller
             }
         });
 
+        // Pesquisa Textual (Search)
+        $query->when($request->input('search'), function ($q, $search) {
+            return $q->where('nome', 'like', "%{$search}%");
+        });
+
+        // Ordenação Dinâmica
+        $sortField = $request->input('sortField', 'nome');
+        $sortDirection = $request->input('sortDirection', 'asc');
+        
+        // Proteção base contra injeção SQL nos campos de sort
+        $allowedSorts = ['nome', 'ativo', 'created_at', 'updated_at', 'deleted_at'];
+        if (in_array($sortField, $allowedSorts)) {
+            $query->orderBy($sortField, $sortDirection === 'desc' ? 'desc' : 'asc');
+        } else {
+            $query->orderBy('nome', 'asc');
+        }
+
         return Inertia::render('TiposContacto/Index', [
-            'tipos'   => $query->orderBy('nome')->paginate(10)->withQueryString(),
-            'filters' => $request->only(['tab', 'dateRange']),
+            'tipos'   => $query->paginate(10)->withQueryString(),
+            'filters' => $request->only(['tab', 'dateRange', 'search', 'sortField', 'sortDirection']),
             'counts'  => [
-                'Todos'     => TipoContacto::whereNull('deleted_at')->count(),
+                'Todos'     => TipoContacto::withTrashed()->count(),
                 'Ativos'    => TipoContacto::whereNull('deleted_at')->where('ativo', true)->count(),
                 'Inativo'   => TipoContacto::whereNull('deleted_at')->where('ativo', false)->count(),
                 'Arquivado' => TipoContacto::onlyTrashed()->count(),
