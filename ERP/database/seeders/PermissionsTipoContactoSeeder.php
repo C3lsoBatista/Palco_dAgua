@@ -20,6 +20,7 @@ class PermissionsTipoContactoSeeder extends Seeder
         $permissions = [
             'tipos-contacto.visualizar',
             'tipos-contacto.gerir',
+            'tipos-contacto.restaurar',
         ];
 
         foreach ($permissions as $p) {
